@@ -89,7 +89,7 @@ export const App = () => {
       <Gap size={96} />
 
       <div className={appSt.bottomBtn}>
-        <ButtonMobile block={true} view="primary" href="alfabank://investments/open_brokerage_account">
+        <ButtonMobile block={true} view="primary" href="alfabank://longread?endpoint=v1/adviser/longreads/11391">
           Открыть брокерский счет
         </ButtonMobile>
       </div>
