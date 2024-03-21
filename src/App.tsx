@@ -2,7 +2,7 @@ import { ButtonMobile } from '@alfalab/core-components/button/mobile';
 import { Gap } from '@alfalab/core-components/gap';
 import { List } from '@alfalab/core-components/list';
 import { Typography } from '@alfalab/core-components/typography';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { BoxItem } from './BoxItem';
 import headerImg from './assets/header.png';
 import img1 from './assets/img1.png';
@@ -11,6 +11,7 @@ import img3 from './assets/img3.png';
 import img4 from './assets/img4.png';
 import img5 from './assets/img5.png';
 import { appSt } from './style.css';
+import { sendDataToGA } from './utils/events';
 
 const boxes: { imgSrc: string; title: string; value: string }[] = [
   {
@@ -42,6 +43,27 @@ const boxes: { imgSrc: string; title: string; value: string }[] = [
 
 export const App = () => {
   const [checkedBox, setChecked] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [err, setError] = useState('');
+
+  const submit = useCallback(() => {
+    if (!checkedBox) {
+      setError('У вас не выбрано ни одной категории');
+      return;
+    }
+    setLoading(true);
+    sendDataToGA(checkedBox).then(() => {
+      setLoading(false);
+
+      (window.location as unknown as string) = 'alfabank://longread?endpoint=v1/adviser/longreads/11391';
+    });
+  }, [checkedBox]);
+
+  const onSelectOption = useCallback((v: string) => {
+    setError('');
+    setChecked(v);
+  }, []);
+
   return (
     <>
       <div className={appSt.imgContainer}>
@@ -81,7 +103,7 @@ export const App = () => {
             imgSrc={box.imgSrc}
             title={box.title}
             value={box.value}
-            setChecked={setChecked}
+            setChecked={onSelectOption}
             checked={box.value === checkedBox}
           />
         ))}
@@ -89,7 +111,7 @@ export const App = () => {
       <Gap size={96} />
 
       <div className={appSt.bottomBtn}>
-        <ButtonMobile block={true} view="primary" href="alfabank://longread?endpoint=v1/adviser/longreads/11391">
+        <ButtonMobile loading={loading} onClick={submit} block={true} view="primary" hint={err}>
           Открыть брокерский счет
         </ButtonMobile>
       </div>
