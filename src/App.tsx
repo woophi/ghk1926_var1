@@ -71,28 +71,28 @@ export const App = () => {
       </div>
       <div className={appSt.container}>
         <Typography.Text tag="p" view="primary-medium" weight="bold" defaultMargins={false}>
-          Чтобы получить дополнительные привилегии в кэшбеке, необходимо выполнить 3 простых шага:
+          Чтобы получить дополнительные привилегии при открытии брокерского счёта, выполните 3 простых шага:
         </Typography.Text>
 
         <List tag="ol">
           <List.Item>
             <Typography.Text tag="p" view="primary-medium" weight="bold" defaultMargins={false}>
-              Выберите одну категорию из списка для получения дополнительных привилегий
+              Выберите одну привилегию из списка, который хотите активировать.
             </Typography.Text>
           </List.Item>
           <List.Item>
             <Typography.Text tag="p" view="primary-medium" weight="bold" defaultMargins={false}>
-              Откройте брокерский счет по ссылке
+              Перейдите по ссылке и откройте брокерский счет.
             </Typography.Text>
           </List.Item>
           <List.Item>
             <Typography.Text tag="p" view="primary-medium" weight="bold" defaultMargins={false}>
-              Совершите покупку любой акции или облигации
+              Совершите покупку любой акции или облигации.
             </Typography.Text>
           </List.Item>
         </List>
         <Typography.Text tag="p" view="primary-medium" weight="bold" defaultMargins={false}>
-          После этих действий, выбранная вами категория добавится в список категорий кэшбека на следующий месяц.
+          После этих действий, выбранная вами привилегия будет активирована на вашем брокерском счете.
         </Typography.Text>
       </div>
 
