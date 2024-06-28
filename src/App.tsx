@@ -46,8 +46,6 @@ export const App = () => {
   const [loading, setLoading] = useState(false);
   const [err, setError] = useState('');
 
-  console.debug(window.localStorage.getItem('123'));
-
   const submit = useCallback(() => {
     if (!checkedBox) {
       setError('У вас не выбрано ни одной категории');
@@ -56,7 +54,6 @@ export const App = () => {
     setLoading(true);
     sendDataToGA(checkedBox).then(() => {
       setLoading(false);
-      window.localStorage.setItem('123', '123');
 
       (window.location as unknown as string) = 'alfabank://longread?endpoint=v1/adviser/longreads/11391';
     });
